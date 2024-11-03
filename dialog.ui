@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>418</width>
+    <height>199</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #1f1f1f;</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>15</y>
+     <width>401</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 23px;
+background-color: rgba(255, 255, 255, 50);
+font-weight: bold;
+border: 1px solid rgba(255, 255, 255, 30);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>Настройки</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 15px;
+background-color: rgba(255, 255, 255, 20);
+border: 1px solid rgba(255, 255, 255, 30);
+border-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string>Точность после запятой:</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="le_accuracy">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>80</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 24px;
+background-color: rgba(255, 255, 255, 30);
+border: 1px solid rgba(255, 255, 255, 30);
+border-radius: 10px;
+</string>
+   </property>
+   <property name="text">
+    <string>10</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border: 1px solid rgba(255, 255, 255, 20);
+background-color: rgba(255, 255, 255, 30);
+border-radius: 10px;
+font-size: 20px;
+font-weight: bold</string>
+   </property>
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
