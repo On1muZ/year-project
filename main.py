@@ -10,6 +10,7 @@ class BaseCalculator(QMainWindow):
     def __init__(self):
         super(BaseCalculator, self).__init__()
         self.ui = Ui_MainWindow()
+        self.setFixedSize(459, 607)
         self.ui.setupUi(self)
 
         self.ui.le_src_number.textChanged.connect(self._on_src_number_text_changed)
