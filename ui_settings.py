@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'dialog.ui'
+## Form generated from reading UI file 'dialogDeTdpD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.0
 ##
@@ -22,39 +22,42 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(418, 199)
+        Dialog.resize(418, 188)
         Dialog.setStyleSheet(u"background-color: #1f1f1f;")
         self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(10, 15, 401, 51))
+        self.label.setGeometry(QRect(10, 10, 401, 51))
         self.label.setStyleSheet(u"font-size: 23px;\n"
-"background-color: rgba(255, 255, 255, 50);\n"
+"background-color: rgb(75, 75, 75);\n"
+"color: white;\n"
 "font-weight: bold;\n"
-"border: 1px solid rgba(255, 255, 255, 30);\n"
+"border: 1px solid rgb(61, 61, 61);\n"
 "border-radius: 10px;")
         self.label_10 = QLabel(Dialog)
         self.label_10.setObjectName(u"label_10")
-        self.label_10.setGeometry(QRect(10, 80, 191, 41))
+        self.label_10.setGeometry(QRect(10, 70, 191, 40))
         self.label_10.setStyleSheet(u"font-size: 15px;\n"
-"background-color: rgba(255, 255, 255, 20);\n"
-"border: 1px solid rgba(255, 255, 255, 30);\n"
-"border-radius: 10px;")
+"background-color: rgb(49, 49, 49);\n"
+"border: 1px solid rgb(61, 61, 61);\n"
+"border-radius: 10px;\n"
+"color: white;")
         self.le_accuracy = QLineEdit(Dialog)
         self.le_accuracy.setObjectName(u"le_accuracy")
-        self.le_accuracy.setGeometry(QRect(220, 80, 191, 41))
+        self.le_accuracy.setGeometry(QRect(220, 70, 191, 41))
         self.le_accuracy.setStyleSheet(u"font-size: 24px;\n"
-"background-color: rgba(255, 255, 255, 30);\n"
-"border: 1px solid rgba(255, 255, 255, 30);\n"
+"background-color: rgb(57, 57, 57);\n"
+"border: 1px solid rgb(61, 61, 61);\n"
 "border-radius: 10px;\n"
-"")
+"color: white;")
         self.pushButton = QPushButton(Dialog)
         self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(10, 140, 121, 51))
-        self.pushButton.setStyleSheet(u"border: 1px solid rgba(255, 255, 255, 20);\n"
-"background-color: rgba(255, 255, 255, 30);\n"
+        self.pushButton.setGeometry(QRect(10, 130, 121, 51))
+        self.pushButton.setStyleSheet(u"border: 1px solid rgb(61, 61, 61);\n"
+"background-color: rgb(57, 57, 57);\n"
 "border-radius: 10px;\n"
 "font-size: 20px;\n"
-"font-weight: bold")
+"font-weight: bold;\n"
+"color: white;")
 
         self.retranslateUi(Dialog)
 
@@ -68,4 +71,3 @@ class Ui_Dialog(object):
         self.le_accuracy.setText(QCoreApplication.translate("Dialog", u"10", None))
         self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c", None))
     # retranslateUi
-

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>199</height>
+    <height>188</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,16 +20,17 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>15</y>
+     <y>10</y>
      <width>401</width>
      <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font-size: 23px;
-background-color: rgba(255, 255, 255, 50);
+background-color: rgb(75, 75, 75);
+color: white;
 font-weight: bold;
-border: 1px solid rgba(255, 255, 255, 30);
+border: 1px solid rgb(61, 61, 61);
 border-radius: 10px;</string>
    </property>
    <property name="text">
@@ -40,16 +41,17 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>80</y>
+     <y>70</y>
      <width>191</width>
-     <height>41</height>
+     <height>40</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font-size: 15px;
-background-color: rgba(255, 255, 255, 20);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
+background-color: rgb(49, 49, 49);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
    </property>
    <property name="text">
     <string>Точность после запятой:</string>
@@ -59,17 +61,17 @@ border-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>80</y>
+     <y>70</y>
      <width>191</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 30);
-border: 1px solid rgba(255, 255, 255, 30);
+background-color: rgb(57, 57, 57);
+border: 1px solid rgb(61, 61, 61);
 border-radius: 10px;
-</string>
+color: white;</string>
    </property>
    <property name="text">
     <string>10</string>
@@ -79,17 +81,18 @@ border-radius: 10px;
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>140</y>
+     <y>130</y>
      <width>121</width>
      <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 1px solid rgba(255, 255, 255, 20);
-background-color: rgba(255, 255, 255, 30);
+    <string notr="true">border: 1px solid rgb(61, 61, 61);
+background-color: rgb(57, 57, 57);
 border-radius: 10px;
 font-size: 20px;
-font-weight: bold</string>
+font-weight: bold;
+color: white;</string>
    </property>
    <property name="text">
     <string>Сохранить</string>

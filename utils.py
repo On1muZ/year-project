@@ -35,7 +35,13 @@ class Number:
                 b += self.alpha.index(i) / k
                 k *= self.base
             b = self._to_base_frac(b, base_to)
-            return str(a) + '.' + str(b)
+            number = str(a) + '.' + str(b)
+            for i in range(len(number)-1, -1, -1):
+                if number[i] == '0':
+                    number = number[:i]
+                else:
+                    break
+            return number
         elif ',' in str(self.number):
             num, frac = map(str, str(self.number).split(','))
             num = int(num, self.base)
@@ -46,14 +52,17 @@ class Number:
                 b += self.alpha.index(i) / k
                 k *= self.base
             b = self._to_base_frac(b, base_to)
-            return a + '.' + b
+            number = str(a) + '.' + str(b)
+            for i in range(len(number)-1, -1, -1):
+                if number[i] == '0':
+                    number = number[:i]
+                else:
+                    break
+            return number
         else :
-            return self._to_base_int(int(str(self.number), self.base), base_to)
-        
+            number = str(self._to_base_int(int(str(self.number), self.base), base_to))
+            return number
 
 if __name__ == "__main__":
-    number = Number(12345, 10)
-    print(number.convert(2))
-    print(number.convert(8))
-    print(number.convert(10))
-    print(number.convert(16))
+    number = Number('0,as', 2, 10).convert(10)
+    print(number)

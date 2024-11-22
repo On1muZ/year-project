@@ -10,8 +10,20 @@
     <height>607</height>
    </rect>
   </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="tabletTracking">
+   <bool>true</bool>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::FocusPolicy::StrongFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="toolTipDuration">
+   <number>1</number>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: #1f1f1f;</string>
@@ -32,9 +44,10 @@
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 23px;
-background-color: rgba(255, 255, 255, 50);
+background-color: rgb(75, 75, 75);
 font-weight: bold;
-border: 1px solid rgba(255, 255, 255, 30);
+color: white;
+border: 1px solid rgb(61, 61, 61);
 border-radius: 10px;</string>
     </property>
     <property name="text">
@@ -52,10 +65,10 @@ border-radius: 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 30);
-border: 1px solid rgba(255, 255, 255, 30);
+background-color: rgb(57, 57, 57);
+border: 1px solid rgb(61, 61, 61);
 border-radius: 10px;
-</string>
+color: white;</string>
     </property>
     <property name="text">
      <string>10</string>
@@ -72,27 +85,11 @@ border-radius: 10px;
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 17px;
-font-weight: bold;</string>
+font-weight: bold;
+color: white;</string>
     </property>
     <property name="text">
      <string>Основание</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="le_src_number">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>140</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 30);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;
-</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -106,9 +103,10 @@ border-radius: 10px;
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
     </property>
     <property name="text">
      <string>2</string>
@@ -125,9 +123,10 @@ border-radius: 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
     </property>
     <property name="text">
      <string>8</string>
@@ -144,9 +143,10 @@ border-radius: 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
     </property>
     <property name="text">
      <string>10</string>
@@ -163,9 +163,10 @@ border-radius: 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
     </property>
     <property name="text">
      <string>16</string>
@@ -182,10 +183,10 @@ border-radius: 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 30);
-border: 1px solid rgba(255, 255, 255, 30);
+background-color: rgb(57, 57, 57);
+border: 1px solid rgb(61, 61, 61);
 border-radius: 10px;
-</string>
+color: white;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
@@ -200,9 +201,10 @@ border-radius: 10px;
     <property name="styleSheet">
      <string notr="true">font-size: 20px;
 font-weight: bold;
-background-color: rgba(255, 255, 255, 20);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
+background-color: rgb(49, 49, 49);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
     </property>
     <property name="text">
      <string>Исходное число</string>
@@ -220,107 +222,13 @@ border-radius: 10px;</string>
     <property name="styleSheet">
      <string notr="true">font-size: 20px;
 font-weight: bold;
-background-color: rgba(255, 255, 255, 20);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
+background-color: rgb(49, 49, 49);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
     </property>
     <property name="text">
      <string>Преобразованное число</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_convert_bin">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>260</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_convert_oct">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>330</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_convert_dec">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>400</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_convert_hex">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>470</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbl_convert_number">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>540</y>
-      <width>331</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 24px;
-background-color: rgba(255, 255, 255, 10);
-border: 1px solid rgba(255, 255, 255, 30);
-border-radius: 10px;</string>
-    </property>
-    <property name="text">
-     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_settings">
@@ -336,8 +244,8 @@ border-radius: 10px;</string>
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: 1px solid rgba(255, 255, 255, 20);
-background-color: rgba(255, 255, 255, 30);
+     <string notr="true">border: 1px solid rgb(61, 61, 61);
+background-color: rgb(57, 57, 57);
 border-radius: 10px</string>
     </property>
     <property name="text">
@@ -365,10 +273,131 @@ border-radius: 10px</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 17px;
-font-weight: bold;</string>
+font-weight: bold;
+color: white;</string>
     </property>
     <property name="text">
      <string>Число </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_src_number">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>140</y>
+      <width>331</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 24px;
+background-color: rgb(57, 57, 57);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_convert_bin">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>260</y>
+      <width>331</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 24px;
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_convert_oct">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>330</y>
+      <width>331</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 24px;
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_convert_dec">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>400</y>
+      <width>331</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 24px;
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_convert_hex">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>470</y>
+      <width>331</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 24px;
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="le_convert_number">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>540</y>
+      <width>331</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font-size: 24px;
+background-color: rgb(40, 40, 40);
+border: 1px solid rgb(61, 61, 61);
+border-radius: 10px;
+color: white;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
