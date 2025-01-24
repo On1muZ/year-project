@@ -20,9 +20,13 @@ from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
 import res_rc
 
 class Ui_MainWindow(object):
+    def get_main_window(self):
+        return self.MainWindow
+        
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
+        self.MainWindow = MainWindow
         MainWindow.resize(459, 607)
         MainWindow.setMouseTracking(True)
         MainWindow.setTabletTracking(True)
@@ -184,6 +188,32 @@ class Ui_MainWindow(object):
 "border-radius: 10px;\n"
 "color: white;")
         self.le_convert_number.setReadOnly(True)
+        self.color = QLabel(self.centralwidget)
+        self.color.setObjectName(u"color")
+        self.color.setGeometry(QRect(-10, -10, 491, 641))
+        self.color.setStyleSheet(u"background-color: #1f1f1f;")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.color.raise_()
+        self.label.raise_()
+        self.le_src_base.raise_()
+        self.label_3.raise_()
+        self.label_6.raise_()
+        self.label_7.raise_()
+        self.label_8.raise_()
+        self.label_9.raise_()
+        self.le_convert_base.raise_()
+        self.label_5.raise_()
+        self.label_10.raise_()
+        self.btn_settings.raise_()
+        self.label_4.raise_()
+        self.le_src_number.raise_()
+        self.le_convert_bin.raise_()
+        self.le_convert_oct.raise_()
+        self.le_convert_dec.raise_()
+        self.le_convert_hex.raise_()
+        self.le_convert_number.raise_()
+
+        self.retranslateUi(MainWindow)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)

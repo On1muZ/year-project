@@ -7,8 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>188</height>
+    <height>652</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>418</width>
+    <height>652</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>418</width>
+    <height>652</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -81,7 +93,7 @@ color: white;</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>130</y>
+     <y>590</y>
      <width>121</width>
      <height>51</height>
     </rect>

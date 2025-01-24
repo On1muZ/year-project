@@ -1,6 +1,7 @@
 from re import U
 import sys
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog
+from PySide6.QtGui import QColor
 from ui_main import Ui_MainWindow
 from utils import Number
 from ui_settings import Ui_Dialog
@@ -77,19 +78,65 @@ ALPHA = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ,."
 
 
 class Dialog(QDialog):
-    def __init__(self):
+    def __init__(self, r = None, g = None, b = None, brightness = None):
         super(Dialog, self).__init__()
         self.ui = Ui_Dialog()
-        self.ui.setupUi(self)
+        if r is not None:
+            self.ui.setupUi(self, r, g, b, brightness)
+        else:
+            self.ui.setupUi(self)
         self.ui.le_accuracy.setText(str(accuracy))
         self.ui.le_accuracy.textChanged.connect(self._on_le_accuracy_text_changed)
         self.ui.pushButton.clicked.connect(self._on_pushButton_clicked)
+
+        if r is not None:
+            self.setup_color(r, g, b, brightness)
+
+
+    def setup_color(self, r, g, b, brightness):
+        # self.ui.setStyleSheet(f"background-color: rgb({r*brightness}, {g*brightness}, {b*brightness});")
+        self.ui.label.setStyleSheet(
+            u"font-size: 23px;\n"
+            f"background-color: rgb({r*brightness*0.9}, {g*brightness*0.9}, {b*brightness*0.9});\n"
+            "color: white;\n"
+            "font-weight: bold;\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;"
+        )
+        self.ui.label_10.setStyleSheet(
+            u"font-size: 15px;\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;")
+        self.ui.le_accuracy.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;")
+        self.ui.pushButton.setStyleSheet(
+            u"border: 1px solid rgb(61, 61, 61);\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border-radius: 10px;\n"
+            "font-size: 20px;\n"
+            "font-weight: bold;\n"
+            "color: white;")
+
 
     def _on_pushButton_clicked(self):
         global accuracy
         if not self.ui.le_accuracy.text() in ('0', ''):
             accuracy = int(self.ui.le_accuracy.text())
             self.close()
+        color = self.ui.color_picker.color_wheel.selected_color
+        r = color.red()
+        g = color.green()
+        b = color.blue()
+        brightness = self.ui.color_picker.brightness_slider.value() / 255.0
+        adjusted_color = QColor.fromHsvF(color.hueF(), color.saturationF(), brightness)
+        window.update_color(r, g, b, brightness)
+
 
     def _on_le_accuracy_text_changed(self, text):
         for i in text:
@@ -111,6 +158,8 @@ class BaseCalculator(QMainWindow):
         self.ui.le_convert_base.textChanged.connect(self._on_convert_base_text_changed)
         self.ui.le_src_base.textChanged.connect(self._on_src_base_text_changed)
         self.ui.btn_settings.clicked.connect(self._on_btn_settings_clicked)
+
+        self.r = None
 
     def _on_src_number_text_changed(self, text):
         if text == '':
@@ -143,6 +192,130 @@ class BaseCalculator(QMainWindow):
         elif text[len(text) - 1] not in ALPHA:
             self.ui.le_src_number.setText(text[:len(text) - 1])
     
+    def update_color(self, r, g, b, brightness):
+        self.r = r
+        self.g = g
+        self.b = b
+        self.brightness = brightness
+        self.ui.color.setStyleSheet(f"background-color: rgb({r*brightness}, {g*brightness}, {b*brightness});\n")
+        self.ui.label.setStyleSheet(u"font-size: 23px;\n"
+            f"background-color: rgb({r*brightness*0.9}, {g*brightness*0.9}, {b*brightness*0.9});\n"
+            "font-weight: bold;\n"
+            "color: white;\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;")
+        self.ui.le_src_base.setStyleSheet(u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.8}, {g*brightness*0.8}, {b*brightness*0.8});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;")
+        self.ui.btn_settings.setStyleSheet(u"border: 1px solid rgb(61, 61, 61);\n"
+            f"background-color: rgb({r*brightness*0.8}, {g*brightness*0.8}, {b*brightness*0.8});\n"
+            "border-radius: 10px")
+        self.ui.label_5.setStyleSheet(u"font-size: 20px;\n"
+            "font-weight: bold;\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;")
+        self.ui.label_3.setStyleSheet(u"font-size: 17px;\n"
+            "font-weight: bold;\n"
+            f"background-color: rgb({r*brightness}, {g*brightness}, {b*brightness});\n"
+            "color: white;")
+        self.ui.label_4.setStyleSheet(
+            u"font-size: 17px;\n"
+            "font-weight: bold;\n"
+            "color: white;"
+            f"background-color: rgb({r*brightness}, {g*brightness}, {b*brightness});\n"
+        )
+        self.ui.le_src_number.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.8}, {g*brightness*0.8}, {b*brightness*0.8});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.label_10.setStyleSheet(
+            u"font-size: 20px;\n"
+            "font-weight: bold;\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.label_6.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.le_convert_dec.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.le_convert_bin.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.label_7.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.le_convert_oct.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.label_8.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.label_9.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.le_convert_hex.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.le_convert_base.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.8}, {g*brightness*0.8}, {b*brightness*0.8});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+        self.ui.le_convert_number.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.5}, {g*brightness*0.5}, {b*brightness*0.5});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;"
+        )
+
+
+
     def _on_convert_base_text_changed(self, text):
         if text == "1":
             return
@@ -186,7 +359,10 @@ class BaseCalculator(QMainWindow):
     
 
     def _on_btn_settings_clicked(self):
-        dialog = Dialog()
+        if self.r is not None:
+            dialog = Dialog(self.r, self.g, self.b, self.brightness)
+        else:
+            dialog = Dialog()
         dialog.exec()
 
     
