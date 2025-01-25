@@ -13,8 +13,11 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QPainter, QColor, QConicalGradient, QMouseEvent
 from PySide6.QtCore import Qt, QPointF
-from math import atan2, degrees, sqrt
+from math import atan2, degrees, radians, sqrt, cos, sin
 from ui_main import Ui_MainWindow
+
+
+color_is_changed = [False]
 
 class ColorWheel(QWidget):
     def __init__(self, parent=None):
@@ -23,7 +26,7 @@ class ColorWheel(QWidget):
         self.selected_color = QColor(255, 255, 255)  # Начальный выбранный цвет — белый
         self.cursor_position = QPointF(self.width() / 2, self.height() / 2)  # Курсор в центре круга
         self.default_color = QColor(200, 200, 200)  # Стандартный цвет программы
-
+        self.color_is_changed = False
     def paintEvent(self, event):
         painter = QPainter(self)  # Создаем объект для рисования
         painter.setRenderHint(QPainter.Antialiasing)  # Включаем сглаживание
@@ -109,7 +112,24 @@ class ColorWheel(QWidget):
                 self.cursor_position = QPointF(center.x() + dx * scale, center.y() + dy * scale)
 
         self.update()  # Перерисовываем виджет
+        self.color_is_changed = True
 
+    def set_brightness(self, brightness):
+        self.brightness = brightness
+        self.update()
+
+    def set_color_by_rgb(self, r, g, b):
+        # Устанавливаем цвет по RGB
+        self.selected_color = QColor(r, g, b)
+        hsv = self.selected_color.toHsv()
+        center = QPointF(self.width() / 2, self.height() / 2)
+        radius = self.width() / 2
+        angle = radians(hsv.hue())
+        saturation = hsv.saturation() / 255.0
+        x = center.x() + cos(angle) * saturation * radius
+        y = center.y() + sin(angle) * saturation * radius
+        self.selector_pos = QPointF(x, y)
+        self.update()
 
 # Класс ColorPicker — главное окно
 class ColorPicker(QWidget):
@@ -124,7 +144,7 @@ class ColorPicker(QWidget):
         self.brightness_slider.setMaximum(255)
         self.brightness_slider.setValue(255)
         self.brightness_slider.valueChanged.connect(self.update_background)
-
+        self.color_is_changed = False
         layout = QVBoxLayout(self)
         layout.addWidget(self.color_wheel)
         spacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -135,11 +155,11 @@ class ColorPicker(QWidget):
 
     def update_background(self, color=None):
         color = self.color_wheel.selected_color
-        print(color)
         color = color.toRgb()
         r = color.red()
         g = color.green()
         b = color.blue()
+        self.color_is_changed = True
         brightness = self.brightness_slider.value() / 255.0
         adjusted_color = QColor.fromHsvF(color.hueF(), color.saturationF(), brightness)
         self.setStyleSheet(f"background-color: {adjusted_color.name()};")
@@ -170,15 +190,19 @@ class ColorPicker(QWidget):
             "border-radius: 10px;\n"
             "font-size: 20px;\n"
             "font-weight: bold;\n"
-            "color: white;")
-        
+            "color: white;")        
 
 
 class Ui_Dialog(object):
+    def get_current_color(self):
+        pass
     def setupUi(self, Dialog, r = None, g = None, b = None, brightness = None):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(418, 552)
+        self.r = r
+        self.g = g
+        self.b = b
         Dialog.setMinimumSize(QSize(418, 552))
         Dialog.setMaximumSize(QSize(418, 552))
         if r is not None:
@@ -224,11 +248,9 @@ class Ui_Dialog(object):
             "font-size: 20px;\n"
             "font-weight: bold;\n"
             "color: white;")
-
         self.retranslateUi(Dialog)
 
         QMetaObject.connectSlotsByName(Dialog)
-
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))

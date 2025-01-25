@@ -85,13 +85,47 @@ class Dialog(QDialog):
             self.ui.setupUi(self, r, g, b, brightness)
         else:
             self.ui.setupUi(self)
+        self.color_is_changed = False
         self.ui.le_accuracy.setText(str(accuracy))
         self.ui.le_accuracy.textChanged.connect(self._on_le_accuracy_text_changed)
         self.ui.pushButton.clicked.connect(self._on_pushButton_clicked)
-
+        self.def_r = r
+        self.def_g = g
+        self.def_b = b
+        self.def_brightness = brightness
         if r is not None:
-            self.setup_color(r, g, b, brightness)
-
+            self.startup_setup_color(r, g, b, brightness)
+            self.ui.color_picker.color_wheel.set_color_by_rgb(r, g, b)
+            self.ui.color_picker.color_wheel.set_brightness(brightness)
+    
+    def startup_setup_color(self, r, g, b, brightness):
+        self.ui.label.setStyleSheet(
+            u"font-size: 23px;\n"
+            f"background-color: rgb({r*brightness*0.9}, {g*brightness*0.9}, {b*brightness*0.9});\n"
+            "color: white;\n"
+            "font-weight: bold;\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;"
+        )
+        self.ui.label_10.setStyleSheet(
+            u"font-size: 15px;\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;")
+        self.ui.le_accuracy.setStyleSheet(
+            u"font-size: 24px;\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border: 1px solid rgb(61, 61, 61);\n"
+            "border-radius: 10px;\n"
+            "color: white;")
+        self.ui.pushButton.setStyleSheet(
+            u"border: 1px solid rgb(61, 61, 61);\n"
+            f"background-color: rgb({r*brightness*0.6}, {g*brightness*0.6}, {b*brightness*0.6});\n"
+            "border-radius: 10px;\n"
+            "font-size: 20px;\n"
+            "font-weight: bold;\n"
+            "color: white;")
 
     def setup_color(self, r, g, b, brightness):
         # self.ui.setStyleSheet(f"background-color: rgb({r*brightness}, {g*brightness}, {b*brightness});")
@@ -122,6 +156,8 @@ class Dialog(QDialog):
             "font-size: 20px;\n"
             "font-weight: bold;\n"
             "color: white;")
+        print("Цвет изменен")
+        self.color_is_changed = True
 
 
     def _on_pushButton_clicked(self):
@@ -129,13 +165,13 @@ class Dialog(QDialog):
         if not self.ui.le_accuracy.text() in ('0', ''):
             accuracy = int(self.ui.le_accuracy.text())
             self.close()
-        color = self.ui.color_picker.color_wheel.selected_color
-        r = color.red()
-        g = color.green()
-        b = color.blue()
-        brightness = self.ui.color_picker.brightness_slider.value() / 255.0
-        adjusted_color = QColor.fromHsvF(color.hueF(), color.saturationF(), brightness)
-        window.update_color(r, g, b, brightness)
+        if self.ui.color_picker.color_is_changed:
+            color = self.ui.color_picker.color_wheel.selected_color
+            r = color.red()
+            g = color.green()
+            b = color.blue()
+            brightness = self.ui.color_picker.brightness_slider.value() / 255.0
+            window.update_color(r, g, b, brightness)
 
 
     def _on_le_accuracy_text_changed(self, text):
