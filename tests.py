@@ -34,3 +34,19 @@ def test_convert_from_32():
     assert Number('10', 32).convert(2) == '100000'
     assert Number('10', 32).convert(8) == '40'
     assert Number('10', 32).convert(16) == '20'
+
+
+def test_convert_frac_from():
+    assert Number('1010,10', 10).convert(2) == "1111110010.000110011"
+    assert Number("5476,69", 10).convert(2) == "1010101100100.101100001"
+    assert Number("5476,69", 10).convert(8) == "12544.5412172702"
+    assert Number("67,65374", 10).convert(16) == "43.A75B813016"
+    assert Number("67,65374", 10).convert(32) == "23.KTDO2C0M91"
+
+
+def test_convert_frac_to_dec():
+    assert Number("1111110010.000110011", 2).convert(10) == '1010.099609375'
+    assert Number("5476,69", 10).convert(2) == "1010101100100.101100001"
+    assert Number("5476,69", 10).convert(8) == "12544.5412172702"
+    assert Number("67,65374", 10).convert(16) == "43.A75B813016"
+    assert Number("67,65374", 10).convert(32) == "23.KTDO2C0M91"

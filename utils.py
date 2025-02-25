@@ -14,43 +14,44 @@ class Number:
         return ('' if num >= 0 else '-') + b[::-1] 
     
     def _to_base_frac(self, frac, base) :
-        b = ''
-        accuracy = self.accuracy
-        while accuracy:
+        frac = float(f"0.{frac}")
+        b = ""
+        for i in range(100):
             frac *= base
-            frac = round(frac, accuracy)
-            b += str(int(frac))
+            if base > 10 and int(frac) >= 10:
+                b += self.alpha[int(frac)]
+            else:
+                b += str(int(frac))
             frac -= int(frac)
-            accuracy -= 1
-        return b
+        return b[:self.accuracy]
+    
+    def _to_dec_frac(self, frac, base):
+        c = -1
+        s = 0
+        for i in frac:
+            print(i)
+            s += self.alpha.index(i.upper())*base**c
+            c -= 1
+        return str(s)[2:]
+
+
+    def validate_number(self):
+        for i in str(self.number):
+            if not (i.upper() in self.alpha[:self.base] or i in (',', '.')):
+                    print(i)
+                    raise ValueError
 
     def convert(self, base_to):
-        if '.' in str(self.number) :
-            num, frac = map(str, str(self.number).split('.'))
+        self.validate_number()
+        if '.' in str(self.number) or ',' in str(self.number):
+            num, frac = map(str, str(self.number).split('.' if '.' in str(self.number) else ","))
             num = int(num, self.base)
             a = self._to_base_int(num, base_to)
-            b = 0
-            k = self.base
-            for i in frac :
-                b += self.alpha.index(i) / k
-                k *= self.base
-            b = self._to_base_frac(b, base_to)
-            number = str(a) + '.' + str(b)
-            for i in range(len(number)-1, -1, -1):
-                if number[i] == '0':
-                    number = number[:i]
-                else:
-                    break
-            return number
-        elif ',' in str(self.number):
-            num, frac = map(str, str(self.number).split(','))
-            num = int(num, self.base)
-            a = self._to_base_int(num, base_to)
-            b = 0
-            k = self.base
-            for i in frac :
-                b += self.alpha.index(i) / k
-                k *= self.base
+            b = self._to_dec_frac(frac, self.base)
+            # k = self.base
+            # for i in frac :
+            #     b += self.alpha.index(i) / k
+            #     k *= self.base
             b = self._to_base_frac(b, base_to)
             number = str(a) + '.' + str(b)
             for i in range(len(number)-1, -1, -1):
@@ -62,6 +63,7 @@ class Number:
         else :
             number = str(self._to_base_int(int(str(self.number), self.base), base_to))
             return number
+        
 
 if __name__ == "__main__":
     number = Number('0,as', 2, 10).convert(10)

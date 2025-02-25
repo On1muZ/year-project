@@ -156,7 +156,6 @@ class Dialog(QDialog):
             "font-size: 20px;\n"
             "font-weight: bold;\n"
             "color: white;")
-        print("Цвет изменен")
         self.color_is_changed = True
 
 
@@ -206,10 +205,6 @@ class BaseCalculator(QMainWindow):
             self.ui.le_convert_number.setText("")
         elif text[len(text) - 1] in ALPHA or text[len(text) - 1] in ALPHA.lower():
             try:
-                print(text)
-                print(int(self.ui.le_src_base.text()))
-                print(accuracy)
-                
                 number = Number(text.lower(), int(self.ui.le_src_base.text()), accuracy=accuracy)
                 self.ui.le_convert_bin.setText(number.convert(2))
                 self.ui.le_convert_oct.setText(number.convert(8))
@@ -217,7 +212,9 @@ class BaseCalculator(QMainWindow):
                 self.ui.le_convert_hex.setText(number.convert(16))
                 if self.ui.le_convert_base.text() != "":
                     self.ui.le_convert_number.setText(number.convert(int(self.ui.le_convert_base.text())))
-            except ValueError:
+            except ValueError as e:
+                print(e.with_traceback.__repr__())
+                print(Number)
                 self.ui.le_convert_bin.setText("")
                 self.ui.le_convert_oct.setText("")
                 self.ui.le_convert_dec.setText("")
@@ -366,7 +363,9 @@ class BaseCalculator(QMainWindow):
             try:
                 number = Number(self.ui.le_src_number.text(), int(self.ui.le_src_base.text()), accuracy=accuracy)
                 self.ui.le_convert_number.setText(number.convert(int(self.ui.le_convert_base.text())))
-            except ValueError:
+            except ValueError as e:
+                print(e)
+                print(Number)
                 return
     
     def _on_src_base_text_changed(self, text):
@@ -386,7 +385,9 @@ class BaseCalculator(QMainWindow):
                 self.ui.le_convert_hex.setText(number.convert(16))
                 if self.ui.le_convert_base.text() != "":
                     self.ui.le_convert_number.setText(number.convert(int(self.ui.le_convert_base.text())))
-            except ValueError:
+            except ValueError as e:
+                print(e.with_traceback.__repr__())
+                print(Number)
                 self.ui.le_convert_bin.setText("")
                 self.ui.le_convert_oct.setText("")
                 self.ui.le_convert_dec.setText("")
