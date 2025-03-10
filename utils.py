@@ -6,12 +6,12 @@ class Number:
         self.accuracy = accuracy
 
     def _to_base_int(self, num, base):
-        n = abs(num)
+        n = num
         b = self.alpha[n % base] 
         while n >= base :
             n = n // base
             b += self.alpha[n % base] 
-        return ('' if num >= 0 else '-') + b[::-1] 
+        return b[::-1] 
     
     def _to_base_frac(self, frac, base) :
         frac = float(f"0.{frac}")
@@ -29,7 +29,6 @@ class Number:
         c = -1
         s = 0
         for i in frac:
-            print(i)
             s += self.alpha.index(i.upper())*base**c
             c -= 1
         return str(s)[2:]
@@ -38,7 +37,6 @@ class Number:
     def validate_number(self):
         for i in str(self.number):
             if not (i.upper() in self.alpha[:self.base] or i in (',', '.')):
-                    print(i)
                     raise ValueError
 
     def convert(self, base_to):
@@ -48,10 +46,6 @@ class Number:
             num = int(num, self.base)
             a = self._to_base_int(num, base_to)
             b = self._to_dec_frac(frac, self.base)
-            # k = self.base
-            # for i in frac :
-            #     b += self.alpha.index(i) / k
-            #     k *= self.base
             b = self._to_base_frac(b, base_to)
             number = str(a) + '.' + str(b)
             for i in range(len(number)-1, -1, -1):
@@ -63,8 +57,3 @@ class Number:
         else :
             number = str(self._to_base_int(int(str(self.number), self.base), base_to))
             return number
-        
-
-if __name__ == "__main__":
-    number = Number('0,as', 2, 10).convert(10)
-    print(number)
